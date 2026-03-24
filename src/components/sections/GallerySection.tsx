@@ -28,8 +28,8 @@ export function GallerySection() {
   }
 
   return (
-    <section id="photos" className="min-h-screen bg-white py-20 md:py-28 flex flex-col">
-      <div className="flex-1 max-w-4xl mx-auto px-6 md:px-12">
+    <section id="photos" className="min-h-screen bg-white py-20 md:py-28">
+      <div className="max-w-4xl mx-auto px-6 md:px-12">
         <AnimateOnScroll>
           <SectionTitle script={t('gallery.script')} heading={t('gallery.heading')} subtitle={t('gallery.subtitle')} />
         </AnimateOnScroll>
