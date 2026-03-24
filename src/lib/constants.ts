@@ -27,7 +27,7 @@ export const WEDDING = {
     venue: 'Islamic Center Bojonegoro',
     address: 'Jl. Panglima Polim No.45, Sumbang Kidul, Sumbang',
     city: 'Kec. Bojonegoro, Kabupaten Bojonegoro',
-    time: '10.00 - 13.00 WIB',
+    time: '11.00 - 13.00 WIB',
     mapUrl: 'https://maps.google.com/?q=-7.16610498234112,111.8764428958938',
     coordinates: { lat: -7.16610498234112, lng: 111.8764428958938 },
   },

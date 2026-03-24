@@ -18,8 +18,12 @@ const rsvpSchema = z.object({
 
 type RsvpFormData = z.infer<typeof rsvpSchema>
 
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXjk5A4ximThYwPMcbIH2Z4d89t6JthsVWOT3T5AHC7howAH-XntOLlRvBGDPEbY93xg/exec'
+
 export function RsvpFormSection() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(false)
   const { t } = useLang()
 
   const {
@@ -34,9 +38,28 @@ export function RsvpFormSection() {
     },
   })
 
-  const onSubmit = (data: RsvpFormData) => {
-    console.log('RSVP Data:', data)
-    setSubmitted(true)
+  const onSubmit = async (data: RsvpFormData) => {
+    setSubmitting(true)
+    setError(false)
+
+    try {
+      const formData = new URLSearchParams()
+      formData.append('name', data.name)
+      formData.append('attending', data.attending === 'accepts' ? 'Hadir' : 'Tidak Hadir')
+      formData.append('totalGuests', String(data.totalGuests))
+      formData.append('notes', data.notes || '')
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData,
+      })
+      setSubmitted(true)
+    } catch {
+      setError(true)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -148,10 +171,17 @@ export function RsvpFormSection() {
                   />
                 </div>
 
+                {/* Error */}
+                {error && (
+                  <p className="text-xs text-red-500 font-body text-center">
+                    {t('rsvp.form.error')}
+                  </p>
+                )}
+
                 {/* Submit */}
                 <div className="pt-4">
-                  <Button type="submit" className="w-full text-center">
-                    {t('rsvp.form.submit')}
+                  <Button type="submit" className="w-full text-center" disabled={submitting}>
+                    {submitting ? t('rsvp.form.sending') : t('rsvp.form.submit')}
                   </Button>
                 </div>
               </form>

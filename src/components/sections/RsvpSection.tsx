@@ -35,16 +35,8 @@ export function RsvpSection() {
           RSVP
         </motion.h2>
 
-        {/* Deadline */}
-        <motion.p
-          variants={fadeInUp}
-          className="font-body text-xs tracking-ultra-wide uppercase text-gray-dark mt-8"
-        >
-          {t('rsvp.deadline')}
-        </motion.p>
-
         <motion.div variants={fadeInUp}>
-          <Divider className="my-8" />
+          <Divider className="mt-8 mb-8" />
         </motion.div>
 
         {/* Reply button */}

@@ -64,6 +64,8 @@ const translations = {
     id: 'Tuliskan doa dan ucapan untuk kedua mempelai...',
   },
   'rsvp.form.submit': { en: 'Submit', id: 'Kirim' },
+  'rsvp.form.sending': { en: 'Sending...', id: 'Mengirim...' },
+  'rsvp.form.error': { en: 'Something went wrong. Please try again.', id: 'Terjadi kesalahan. Silakan coba lagi.' },
   'rsvp.form.thankyou': { en: 'Thank You', id: 'Terima Kasih' },
   'rsvp.form.thankyouMsg': {
     en: 'Your response has been recorded. We look forward to celebrating with you!',
