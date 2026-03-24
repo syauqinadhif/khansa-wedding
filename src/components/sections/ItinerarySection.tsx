@@ -41,13 +41,13 @@ export function ItinerarySection() {
 
         <motion.h2
           variants={fadeInUp}
-          className="font-display text-display-lg md:text-display-xl text-white uppercase tracking-widest-plus mt-2"
+          className="font-display text-display-sm md:text-display-lg text-white uppercase tracking-widest-plus mt-2"
         >
           {t('itinerary.heading1')}
         </motion.h2>
         <motion.h2
           variants={fadeInUp}
-          className="font-display text-display-lg md:text-display-xl text-white uppercase tracking-widest-plus"
+          className="font-display text-display-sm md:text-display-lg text-white uppercase tracking-widest-plus"
         >
           {t('itinerary.heading2')}
         </motion.h2>
