@@ -5,9 +5,12 @@ import { Divider } from '@/components/ui/Divider'
 import { SectionNav } from '@/components/ui/SectionNav'
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator'
 import { CountdownTimer } from '@/components/ui/CountdownTimer'
+import { useLang } from '@/contexts/LanguageContext'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 
 export function HeroSection() {
+  const { t } = useLang()
+
   return (
     <section
       id="hero"
@@ -25,6 +28,14 @@ export function HeroSection() {
         animate="visible"
         className="flex flex-col items-center justify-center flex-1 px-6"
       >
+        {/* Date - prominent */}
+        <motion.p
+          variants={fadeInUp}
+          className="font-display text-sm md:text-base tracking-ultra-wide uppercase font-bold text-gold mb-8"
+        >
+          {t('hero.date')}
+        </motion.p>
+
         {/* Monogram */}
         <motion.div variants={fadeInUp}>
           <div className="font-display text-6xl md:text-8xl text-center tracking-widest-plus">
@@ -39,7 +50,7 @@ export function HeroSection() {
           variants={fadeInUp}
           className="font-display text-sm md:text-base tracking-ultra-wide uppercase mt-6 text-gray-dark"
         >
-          Khansa & Izzar
+          Khansa & Izar
         </motion.p>
 
         {/* Divider */}
@@ -58,10 +69,10 @@ export function HeroSection() {
 
       {/* Bottom section nav */}
       <SectionNav
-        prevLabel="Start"
+        prevLabel={t('nav.start')}
         prevHref="#hero"
-        nextLabel="Itinerary"
-        nextHref="#itinerary"
+        nextLabel={t('nav.couple')}
+        nextHref="#couple"
       />
     </section>
   )

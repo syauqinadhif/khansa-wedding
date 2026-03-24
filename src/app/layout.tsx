@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Great_Vibes, Cormorant_Garamond, Montserrat } from 'next/font/google'
+import { Providers } from '@/components/Providers'
 import './globals.css'
 
 const greatVibes = Great_Vibes({
@@ -24,10 +25,10 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Khansa & Izzar — Wedding | April 5, 2026',
-  description: 'You are cordially invited to celebrate the wedding of Khansa & Izzar on April 5, 2026.',
+  title: 'Khansa & Izar — Wedding | April 5, 2026',
+  description: 'You are cordially invited to celebrate the wedding of Khansa & Izar on April 5, 2026.',
   openGraph: {
-    title: 'Khansa & Izzar Wedding',
+    title: 'Khansa & Izar Wedding',
     description: 'Join us for our special day — April 5, 2026',
     type: 'website',
   },
@@ -37,7 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${greatVibes.variable} ${cormorant.variable} ${montserrat.variable}`}>
       <body className="font-body bg-white text-charcoal antialiased">
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

@@ -2,14 +2,19 @@
 
 import { SectionTitle } from '@/components/ui/SectionTitle'
 import { AnimateOnScroll } from '@/components/ui/AnimateOnScroll'
+import { SectionNav } from '@/components/ui/SectionNav'
+import { useLang } from '@/contexts/LanguageContext'
 import { TIMELINE } from '@/lib/constants'
+import { TranslationKey } from '@/lib/translations'
 
 export function StorySection() {
+  const { t } = useLang()
+
   return (
-    <section id="story" className="min-h-screen bg-cream py-20 md:py-28">
-      <div className="max-w-2xl mx-auto px-6 md:px-12">
+    <section id="story" className="min-h-screen bg-cream py-20 md:py-28 flex flex-col">
+      <div className="flex-1 max-w-2xl mx-auto px-6 md:px-12">
         <AnimateOnScroll>
-          <SectionTitle script="our" heading="Story" />
+          <SectionTitle script={t('story.script')} heading={t('story.heading')} />
         </AnimateOnScroll>
 
         {/* Timeline */}
@@ -18,7 +23,7 @@ export function StorySection() {
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gray-light md:-translate-x-px" />
 
           {TIMELINE.map((item, index) => (
-            <AnimateOnScroll key={item.year} delay={index * 0.1}>
+            <AnimateOnScroll key={`${item.year}-${index}`} delay={index * 0.1}>
               <div className={`relative flex items-start mb-12 ${
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}>
@@ -31,10 +36,10 @@ export function StorySection() {
                 }`}>
                   <p className="font-display text-lg tracking-wider text-gold">{item.year}</p>
                   <h3 className="font-display text-base font-semibold uppercase tracking-wider mt-1">
-                    {item.title}
+                    {t(item.titleKey as TranslationKey)}
                   </h3>
                   <p className="font-body text-sm text-gray mt-2 leading-relaxed">
-                    {item.description}
+                    {t(item.descKey as TranslationKey)}
                   </p>
                 </div>
               </div>
@@ -42,6 +47,14 @@ export function StorySection() {
           ))}
         </div>
       </div>
+
+      {/* Bottom nav */}
+      <SectionNav
+        prevLabel={t('nav.ceremony')}
+        prevHref="#ceremony"
+        nextLabel={t('nav.photos')}
+        nextHref="#photos"
+      />
     </section>
   )
 }

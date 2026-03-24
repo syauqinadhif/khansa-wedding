@@ -7,7 +7,7 @@ import { z } from 'zod'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { SectionTitle } from '@/components/ui/SectionTitle'
-import { fadeInUp } from '@/lib/animations'
+import { useLang } from '@/contexts/LanguageContext'
 
 const rsvpSchema = z.object({
   name: z.string().min(2, 'Please enter your name'),
@@ -20,6 +20,7 @@ type RsvpFormData = z.infer<typeof rsvpSchema>
 
 export function RsvpFormSection() {
   const [submitted, setSubmitted] = useState(false)
+  const { t } = useLang()
 
   const {
     register,
@@ -54,9 +55,9 @@ export function RsvpFormSection() {
                   <path d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="font-display text-display-sm uppercase tracking-widest-plus">Thank You</h3>
+              <h3 className="font-display text-display-sm uppercase tracking-widest-plus">{t('rsvp.form.thankyou')}</h3>
               <p className="font-body text-sm text-gray mt-4">
-                Your response has been recorded. We look forward to celebrating with you!
+                {t('rsvp.form.thankyouMsg')}
               </p>
             </motion.div>
           ) : (
@@ -67,18 +68,18 @@ export function RsvpFormSection() {
               viewport={{ once: true }}
             >
               <div className="mb-12">
-                <SectionTitle script="join us!" heading="RSVP" />
+                <SectionTitle script={t('rsvp.script')} heading="RSVP" />
               </div>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 mt-12">
                 {/* Name */}
                 <div>
                   <label className="font-body text-xs tracking-wider uppercase text-gray-dark block mb-2">
-                    Name<span className="text-gold">*</span>
+                    {t('rsvp.form.name')}<span className="text-gold">*</span>
                   </label>
                   <input
                     {...register('name')}
-                    placeholder="Enter guest name"
+                    placeholder={t('rsvp.form.namePlaceholder')}
                     className="w-full border-0 border-b border-gray-light focus:border-gold bg-transparent font-body text-sm py-2 outline-none transition-colors placeholder:text-gray-light"
                   />
                   {errors.name && (
@@ -89,7 +90,7 @@ export function RsvpFormSection() {
                 {/* Attending */}
                 <div>
                   <label className="font-body text-xs tracking-wider uppercase text-gray-dark block mb-3">
-                    Will you join us?<span className="text-gold">*</span>
+                    {t('rsvp.form.attending')}<span className="text-gold">*</span>
                   </label>
                   <div className="space-y-3">
                     <label className="flex items-center gap-3 cursor-pointer group">
@@ -100,7 +101,7 @@ export function RsvpFormSection() {
                         className="w-4 h-4 accent-gold"
                       />
                       <span className="font-body text-sm tracking-wider group-hover:text-gold transition-colors">
-                        Joyfully Accepts
+                        {t('rsvp.form.accepts')}
                       </span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer group">
@@ -111,7 +112,7 @@ export function RsvpFormSection() {
                         className="w-4 h-4 accent-gold"
                       />
                       <span className="font-body text-sm tracking-wider group-hover:text-gold transition-colors">
-                        Regretfully Declines
+                        {t('rsvp.form.declines')}
                       </span>
                     </label>
                   </div>
@@ -123,7 +124,7 @@ export function RsvpFormSection() {
                 {/* Total attending */}
                 <div>
                   <label className="font-body text-xs tracking-wider uppercase text-gray-dark block mb-2">
-                    Total attending<span className="text-gold">*</span>
+                    {t('rsvp.form.totalGuests')}<span className="text-gold">*</span>
                   </label>
                   <input
                     type="number"
@@ -134,15 +135,15 @@ export function RsvpFormSection() {
                   />
                 </div>
 
-                {/* Notes */}
+                {/* Your wish for us */}
                 <div>
                   <label className="font-body text-xs tracking-wider uppercase text-gray-dark block mb-2">
-                    Notes <span className="text-gray text-[10px]">(optional)</span>
+                    {t('rsvp.form.wishes')} <span className="text-gray text-[10px]">(optional)</span>
                   </label>
                   <textarea
                     {...register('notes')}
                     rows={3}
-                    placeholder="Any dietary restrictions or special requests..."
+                    placeholder={t('rsvp.form.wishesPlaceholder')}
                     className="w-full border border-gray-light focus:border-gold bg-transparent font-body text-sm p-3 outline-none transition-colors resize-none placeholder:text-gray-light"
                   />
                 </div>
@@ -150,7 +151,7 @@ export function RsvpFormSection() {
                 {/* Submit */}
                 <div className="pt-4">
                   <Button type="submit" className="w-full text-center">
-                    Submit
+                    {t('rsvp.form.submit')}
                   </Button>
                 </div>
               </form>

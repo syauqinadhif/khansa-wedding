@@ -4,14 +4,18 @@ import { SectionTitle } from '@/components/ui/SectionTitle'
 import { Button } from '@/components/ui/Button'
 import { AnimateOnScroll } from '@/components/ui/AnimateOnScroll'
 import { Divider } from '@/components/ui/Divider'
+import { SectionNav } from '@/components/ui/SectionNav'
+import { useLang } from '@/contexts/LanguageContext'
 import { WEDDING } from '@/lib/constants'
 
 export function MapSection() {
+  const { t } = useLang()
+
   return (
-    <section id="map" className="min-h-screen bg-cream py-20 md:py-28">
-      <div className="max-w-2xl mx-auto px-6 md:px-12">
+    <section id="map" className="min-h-screen bg-cream py-20 md:py-28 flex flex-col">
+      <div className="flex-1 max-w-2xl mx-auto px-6 md:px-12">
         <AnimateOnScroll>
-          <SectionTitle script="find" heading="On Map" />
+          <SectionTitle script={t('map.script')} heading={t('map.heading')} />
         </AnimateOnScroll>
 
         {/* Map embed */}
@@ -43,12 +47,20 @@ export function MapSection() {
                 variant="outline"
                 href={WEDDING.ceremony.mapUrl}
               >
-                Get Directions
+                {t('map.directions')}
               </Button>
             </div>
           </div>
         </AnimateOnScroll>
       </div>
+
+      {/* Bottom nav */}
+      <SectionNav
+        prevLabel={t('nav.photos')}
+        prevHref="#photos"
+        nextLabel="RSVP"
+        nextHref="#rsvp"
+      />
     </section>
   )
 }

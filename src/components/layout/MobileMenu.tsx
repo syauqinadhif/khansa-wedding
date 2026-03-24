@@ -1,8 +1,20 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { NAV_ITEMS } from '@/lib/constants'
 import { Monogram } from '@/components/ui/Monogram'
+import { useLang } from '@/contexts/LanguageContext'
+import { TranslationKey } from '@/lib/translations'
+
+const NAV_ITEMS: { labelKey: TranslationKey; href: string }[] = [
+  { labelKey: 'nav.start', href: '#hero' },
+  { labelKey: 'nav.couple', href: '#couple' },
+  { labelKey: 'nav.itinerary', href: '#itinerary' },
+  { labelKey: 'nav.ceremony', href: '#ceremony' },
+  { labelKey: 'nav.story', href: '#story' },
+  { labelKey: 'nav.photos', href: '#photos' },
+  { labelKey: 'nav.map', href: '#map' },
+  { labelKey: 'nav.rsvp', href: '#rsvp' },
+]
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -10,6 +22,8 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const { t } = useLang()
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -20,7 +34,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           className="fixed inset-0 z-[60] bg-white"
         >
           <div className="flex flex-col items-center justify-center h-full">
-            {/* Close button */}
             <button
               onClick={onClose}
               className="absolute top-6 right-6 p-2 text-charcoal"
@@ -45,7 +58,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   transition={{ delay: 0.1 + i * 0.08 }}
                   className="font-display text-xl tracking-widest-plus uppercase text-charcoal hover:text-gold transition-colors"
                 >
-                  {item.label}
+                  {t(item.labelKey)}
                 </motion.a>
               ))}
             </nav>

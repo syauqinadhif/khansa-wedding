@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { WEDDING } from '@/lib/constants'
+import { useLang } from '@/contexts/LanguageContext'
 import { fadeInUp } from '@/lib/animations'
 
 interface TimeLeft {
@@ -25,13 +26,13 @@ function calculateTimeLeft(): TimeLeft {
   }
 }
 
-function TimeUnit({ value, label, light }: { value: number; label: string; light?: boolean }) {
+function TimeUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <span className={`font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-wider tabular-nums ${light ? 'text-white' : 'text-charcoal'}`}>
+      <span className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-wider tabular-nums">
         {String(value).padStart(2, '0')}
       </span>
-      <span className={`font-body text-[9px] md:text-[10px] tracking-ultra-wide uppercase mt-2 ${light ? 'text-white/50' : 'text-gray'}`}>
+      <span className="font-body text-[9px] md:text-[10px] tracking-ultra-wide uppercase text-gray mt-2">
         {label}
       </span>
     </div>
@@ -46,8 +47,9 @@ function Colon() {
   )
 }
 
-export function CountdownTimer({ light = false }: { light?: boolean }) {
+export function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
+  const { t } = useLang()
 
   useEffect(() => {
     setTimeLeft(calculateTimeLeft())
@@ -62,7 +64,7 @@ export function CountdownTimer({ light = false }: { light?: boolean }) {
   if (isOver) {
     return (
       <motion.div variants={fadeInUp} className="text-center">
-        <p className="font-script text-script-md text-gold">Today is the day!</p>
+        <p className="font-script text-script-md text-gold">{t('countdown.today')}</p>
       </motion.div>
     )
   }
@@ -70,22 +72,18 @@ export function CountdownTimer({ light = false }: { light?: boolean }) {
   return (
     <motion.div variants={fadeInUp} className="flex flex-col items-center">
       <p className="font-script text-script-md md:text-script-lg text-gold mb-6">
-        counting down
+        {t('countdown.script')}
       </p>
 
       <div className="flex items-start justify-center gap-3 md:gap-4">
-        <TimeUnit value={timeLeft.days} label="Days" light={light} />
+        <TimeUnit value={timeLeft.days} label={t('countdown.days')} />
         <Colon />
-        <TimeUnit value={timeLeft.hours} label="Hours" light={light} />
+        <TimeUnit value={timeLeft.hours} label={t('countdown.hours')} />
         <Colon />
-        <TimeUnit value={timeLeft.minutes} label="Minutes" light={light} />
+        <TimeUnit value={timeLeft.minutes} label={t('countdown.minutes')} />
         <Colon />
-        <TimeUnit value={timeLeft.seconds} label="Seconds" light={light} />
+        <TimeUnit value={timeLeft.seconds} label={t('countdown.seconds')} />
       </div>
-
-      <p className={`font-body text-[10px] md:text-xs tracking-ultra-wide uppercase mt-6 ${light ? 'text-white/40' : 'text-gray'}`}>
-        {WEDDING.date.day}, {WEDDING.date.display}
-      </p>
     </motion.div>
   )
 }

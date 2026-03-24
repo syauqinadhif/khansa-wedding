@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { AnimateOnScroll } from '@/components/ui/AnimateOnScroll'
 import { Divider } from '@/components/ui/Divider'
 import { SectionNav } from '@/components/ui/SectionNav'
+import { useLang } from '@/contexts/LanguageContext'
 import { WEDDING } from '@/lib/constants'
 
 function VenueCard({
@@ -13,6 +14,7 @@ function VenueCard({
   city,
   time,
   imageSrc,
+  imageClassName,
 }: {
   title: string
   venue: string
@@ -20,6 +22,7 @@ function VenueCard({
   city: string
   time: string
   imageSrc: string
+  imageClassName?: string
 }) {
   return (
     <div className="flex flex-col items-center text-center">
@@ -30,7 +33,7 @@ function VenueCard({
             src={imageSrc}
             alt={title}
             fill
-            className="object-cover grayscale"
+            className={`object-cover grayscale ${imageClassName || ''}`}
           />
         </div>
       </AnimateOnScroll>
@@ -65,12 +68,14 @@ function VenueCard({
 }
 
 export function CeremonySection() {
+  const { t } = useLang()
+
   return (
     <section id="ceremony" className="min-h-screen bg-white py-20 md:py-28 flex flex-col">
       <div className="flex-1 max-w-2xl mx-auto px-6 md:px-12 w-full">
         {/* Ceremony */}
         <VenueCard
-          title="Ceremony"
+          title={t('ceremony.title')}
           venue={WEDDING.ceremony.venue}
           address={WEDDING.ceremony.address}
           city={WEDDING.ceremony.city}
@@ -83,21 +88,22 @@ export function CeremonySection() {
 
         {/* Reception */}
         <VenueCard
-          title="Reception"
+          title={t('reception.title')}
           venue={WEDDING.reception.venue}
           address={WEDDING.reception.address}
           city={WEDDING.reception.city}
           time={WEDDING.reception.time}
           imageSrc="/images/ceremony/reception-venue.jpg"
+          imageClassName="object-[center_30%]"
         />
       </div>
 
       {/* Bottom nav */}
       <SectionNav
-        prevLabel="Itinerary"
+        prevLabel={t('nav.itinerary')}
         prevHref="#itinerary"
-        nextLabel="RSVP"
-        nextHref="#rsvp"
+        nextLabel={t('nav.story')}
+        nextHref="#story"
       />
     </section>
   )

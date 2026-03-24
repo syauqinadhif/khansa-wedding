@@ -5,11 +5,14 @@ import Image from 'next/image'
 import { SectionTitle } from '@/components/ui/SectionTitle'
 import { AnimateOnScroll } from '@/components/ui/AnimateOnScroll'
 import { Lightbox } from '@/components/ui/Lightbox'
+import { SectionNav } from '@/components/ui/SectionNav'
+import { useLang } from '@/contexts/LanguageContext'
 import { GALLERY_IMAGES } from '@/lib/constants'
 
 export function GallerySection() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const { t } = useLang()
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index)
@@ -25,10 +28,10 @@ export function GallerySection() {
   }
 
   return (
-    <section id="photos" className="min-h-screen bg-white py-20 md:py-28">
-      <div className="max-w-4xl mx-auto px-6 md:px-12">
+    <section id="photos" className="min-h-screen bg-white py-20 md:py-28 flex flex-col">
+      <div className="flex-1 max-w-4xl mx-auto px-6 md:px-12">
         <AnimateOnScroll>
-          <SectionTitle script="our" heading="Photos" subtitle="Our photo gallery" />
+          <SectionTitle script={t('gallery.script')} heading={t('gallery.heading')} subtitle={t('gallery.subtitle')} />
         </AnimateOnScroll>
 
         {/* Photo grid */}
@@ -58,6 +61,14 @@ export function GallerySection() {
         onClose={() => setLightboxOpen(false)}
         onPrev={handlePrev}
         onNext={handleNext}
+      />
+
+      {/* Bottom nav */}
+      <SectionNav
+        prevLabel={t('nav.story')}
+        prevHref="#story"
+        nextLabel={t('nav.map')}
+        nextHref="#map"
       />
     </section>
   )

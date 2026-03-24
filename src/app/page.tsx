@@ -1,6 +1,7 @@
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
+import { CoupleSection } from '@/components/sections/CoupleSection'
 import { ItinerarySection } from '@/components/sections/ItinerarySection'
 import { CeremonySection } from '@/components/sections/CeremonySection'
 import { RsvpSection } from '@/components/sections/RsvpSection'
@@ -9,6 +10,7 @@ import { StorySection } from '@/components/sections/StorySection'
 import { GallerySection } from '@/components/sections/GallerySection'
 import { MapSection } from '@/components/sections/MapSection'
 import { LoadingScreen } from '@/components/ui/LoadingScreen'
+import { MusicPlayer } from '@/components/ui/MusicPlayer'
 
 export default function HomePage() {
   return (
@@ -17,15 +19,17 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
+        <CoupleSection />
         <ItinerarySection />
         <CeremonySection />
-        <RsvpSection />
-        <RsvpFormSection />
         <StorySection />
         <GallerySection />
         <MapSection />
+        <RsvpSection />
+        <RsvpFormSection />
       </main>
       <Footer />
+      <MusicPlayer />
     </>
   )
 }

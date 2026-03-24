@@ -4,10 +4,12 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Divider } from '@/components/ui/Divider'
 import { SectionNav } from '@/components/ui/SectionNav'
-import { WEDDING } from '@/lib/constants'
+import { useLang } from '@/contexts/LanguageContext'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 
 export function RsvpSection() {
+  const { t } = useLang()
+
   return (
     <section id="rsvp" className="min-h-screen flex flex-col items-center bg-cream">
       <motion.div
@@ -22,7 +24,7 @@ export function RsvpSection() {
           variants={fadeInUp}
           className="font-script text-script-xl text-gold"
         >
-          join us!
+          {t('rsvp.script')}
         </motion.p>
 
         {/* RSVP heading */}
@@ -38,7 +40,7 @@ export function RsvpSection() {
           variants={fadeInUp}
           className="font-body text-xs tracking-ultra-wide uppercase text-gray-dark mt-8"
         >
-          Please reply by {WEDDING.rsvp.deadline}.
+          {t('rsvp.deadline')}
         </motion.p>
 
         <motion.div variants={fadeInUp}>
@@ -47,7 +49,7 @@ export function RsvpSection() {
 
         {/* Reply button */}
         <motion.div variants={fadeInUp}>
-          <Button href="#rsvp-form">Reply Now</Button>
+          <Button href="#rsvp-form">{t('rsvp.reply')}</Button>
         </motion.div>
 
         {/* Wedding date */}
@@ -63,10 +65,10 @@ export function RsvpSection() {
 
       {/* Bottom nav */}
       <SectionNav
-        prevLabel="Start"
-        prevHref="#hero"
-        nextLabel="Our Story"
-        nextHref="#story"
+        prevLabel={t('nav.map')}
+        prevHref="#map"
+        nextLabel=""
+        nextHref=""
       />
     </section>
   )

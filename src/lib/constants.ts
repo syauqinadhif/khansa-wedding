@@ -1,7 +1,7 @@
 export const WEDDING = {
   couple: {
-    person1: { firstName: 'Khansa', lastName: '' },
-    person2: { firstName: 'Izzar', lastName: '' },
+    person1: { firstName: 'Khansa', lastName: 'Nabila Izzati, S.Si.' },
+    person2: { firstName: 'Moch. Imam', lastName: 'Zarqoni, S.Kom' },
     monogram: 'K + I',
     monogramShort: 'K+I',
   },
@@ -36,26 +36,27 @@ export const WEDDING = {
 
 export const NAV_ITEMS = [
   { label: 'Start', href: '#hero' },
+  { label: 'The Couple', href: '#couple' },
   { label: 'Itinerary', href: '#itinerary' },
   { label: 'Ceremony', href: '#ceremony' },
-  { label: 'RSVP', href: '#rsvp' },
   { label: 'Our Story', href: '#story' },
   { label: 'Photos', href: '#photos' },
   { label: 'Map', href: '#map' },
+  { label: 'RSVP', href: '#rsvp' },
 ] as const
 
 export const TIMELINE = [
-  { year: '2019', title: 'First Met', description: "At a friend's dinner party in downtown Manhattan." },
-  { year: '2020', title: 'First Date', description: 'Coffee turned into dinner, then a walk along the river.' },
-  { year: '2023', title: 'The Proposal', description: 'Under the cherry blossoms in Central Park.' },
-  { year: '2026', title: 'The Wedding', description: 'April 5 — The beginning of forever.' },
+  { year: '2024', titleKey: 'story.2024.title', descKey: 'story.2024.desc' },
+  { year: '2025', titleKey: 'story.2025a.title', descKey: 'story.2025a.desc' },
+  { year: '2025', titleKey: 'story.2025b.title', descKey: 'story.2025b.desc' },
+  { year: '2026', titleKey: 'story.2026.title', descKey: 'story.2026.desc' },
 ] as const
 
 export const GALLERY_IMAGES = [
-  { src: '/images/gallery/photo-1.jpg', alt: 'Khansa & Izzar - intimate moment' },
-  { src: '/images/gallery/photo-2.jpg', alt: 'Khansa & Izzar - joyful laughter' },
-  { src: '/images/gallery/photo-3.jpg', alt: 'Khansa & Izzar - showing rings' },
-  { src: '/images/gallery/photo-4.jpg', alt: 'Khansa & Izzar - seated together' },
-  { src: '/images/gallery/photo-5.jpg', alt: 'Khansa & Izzar - elegant pose' },
-  { src: '/images/gallery/photo-6.jpg', alt: 'Khansa & Izzar - romantic bouquet' },
+  { src: '/images/gallery/photo-1.jpg', alt: 'Khansa & Izar - intimate moment' },
+  { src: '/images/gallery/photo-2.jpg', alt: 'Khansa & Izar - joyful laughter' },
+  { src: '/images/gallery/photo-3.jpg', alt: 'Khansa & Izar - showing rings' },
+  { src: '/images/gallery/photo-4.jpg', alt: 'Khansa & Izar - seated together' },
+  { src: '/images/gallery/photo-5.jpg', alt: 'Khansa & Izar - elegant pose' },
+  { src: '/images/gallery/photo-6.jpg', alt: 'Khansa & Izar - romantic bouquet' },
 ] as const

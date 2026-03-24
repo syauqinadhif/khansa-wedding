@@ -3,16 +3,19 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { SectionNav } from '@/components/ui/SectionNav'
+import { useLang } from '@/contexts/LanguageContext'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 
 export function ItinerarySection() {
+  const { t } = useLang()
+
   return (
     <section id="itinerary" className="relative min-h-screen flex flex-col">
       {/* Background image with grayscale + dark overlay */}
       <div className="absolute inset-0">
         <Image
           src="/images/hero/itinerary-bg.jpg"
-          alt="Khansa & Izzar"
+          alt="Khansa & Izar"
           fill
           className="object-cover grayscale"
           priority
@@ -33,36 +36,36 @@ export function ItinerarySection() {
           variants={fadeInUp}
           className="font-script text-script-lg text-gold-light"
         >
-          all about our
+          {t('itinerary.script')}
         </motion.p>
 
         <motion.h2
           variants={fadeInUp}
           className="font-display text-display-lg md:text-display-xl text-white uppercase tracking-widest-plus mt-2"
         >
-          Wedding
+          {t('itinerary.heading1')}
         </motion.h2>
         <motion.h2
           variants={fadeInUp}
           className="font-display text-display-lg md:text-display-xl text-white uppercase tracking-widest-plus"
         >
-          Itinerary
+          {t('itinerary.heading2')}
         </motion.h2>
 
         <motion.p
           variants={fadeInUp}
           className="font-body text-sm text-gray-light tracking-wider mt-8 max-w-xs leading-relaxed"
         >
-          Here you may find all basic informations about the event.
+          {t('itinerary.body')}
         </motion.p>
       </motion.div>
 
       {/* Bottom nav */}
       <div className="relative z-10">
         <SectionNav
-          prevLabel="Start"
-          prevHref="#hero"
-          nextLabel="Ceremony"
+          prevLabel={t('nav.couple')}
+          prevHref="#couple"
+          nextLabel={t('nav.ceremony')}
           nextHref="#ceremony"
           light
         />

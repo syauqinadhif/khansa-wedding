@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react'
 import { Monogram } from '@/components/ui/Monogram'
 import { MobileMenu } from './MobileMenu'
+import { useLang } from '@/contexts/LanguageContext'
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { lang, toggleLang } = useLang()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -37,13 +39,21 @@ export function Header() {
             <Monogram size="sm" />
           </a>
 
-          {/* RSVP Link */}
-          <a
-            href="#rsvp"
-            className="font-body text-xs tracking-ultra-wide uppercase text-charcoal hover:text-gold transition-colors"
-          >
-            RSVP
-          </a>
+          {/* Right side: Lang toggle + RSVP */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleLang}
+              className="font-body text-[10px] tracking-wider uppercase border border-charcoal/30 rounded-full px-2.5 py-1 text-charcoal hover:bg-charcoal hover:text-white transition-colors"
+            >
+              {lang === 'en' ? 'ID' : 'EN'}
+            </button>
+            <a
+              href="#rsvp"
+              className="font-body text-xs tracking-ultra-wide uppercase text-charcoal hover:text-gold transition-colors hidden sm:block"
+            >
+              RSVP
+            </a>
+          </div>
         </div>
       </header>
 
